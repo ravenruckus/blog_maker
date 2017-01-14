@@ -1,8 +1,8 @@
 'use strict';
 
-// if (process.env.NODE_ENV !== 'production') {
-//   require('dotenv').config();
-// }
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 const express = require('express');
 const app = express();
@@ -31,9 +31,9 @@ const path = require('path');
 
 app.use(express.static(path.join('public')));
 
-// const posts = require('./routes/posts');
+const posts = require('./routes/posts');
 
-// app.use(posts);
+app.use(posts);
 
 app.use((_req, res) => {
   res.sendStatus(404);
