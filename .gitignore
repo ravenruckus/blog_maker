@@ -2,3 +2,7 @@
 .env
 node_modules
 npm-debug.log
+vender
+roboto
+materialize.css
+materialize.min.css
