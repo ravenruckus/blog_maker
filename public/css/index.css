@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway|Titillium+Web');
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #000;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+main .parallax-container {
+  height: 350px;
+}
+
+nav .brand-logo {
+  font-size: 2rem;
+  font-family: 'Raleway', sans-serif;
+  margin-left: 1%;
+  padding-left: 75px;
+  background-image: url("../images/blog_logo.svg");
+  background-repeat: no-repeat;
+  background-position: 3% 3px;
+  background-size: 60px 60px;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+  color: #000;
+}
+
+footer.page-footer .footer-copyright {
+  margin-left: 2%;
+}
