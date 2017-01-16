@@ -6,7 +6,8 @@ module.exports = {
     connection: 'postgres://localhost/blog_dev'
   },
 
-}
+
   production: {
 
   }
+};

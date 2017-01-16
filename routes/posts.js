@@ -33,7 +33,7 @@ router.get('/posts/:id', (req, res, next) => {
     .first()
     .then((row) => {
       if (!row) {
-        throw boom.create(404, 'Not Founc');
+        throw boom.create(404, 'Not Found');
       }
 
       const post = camelizeKeys(row);
