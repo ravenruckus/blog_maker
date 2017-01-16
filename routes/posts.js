@@ -10,7 +10,7 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 
 router.get('/posts', (_req, res, next) => {
   knex('posts')
-    .orderBy('title')
+    .orderBy('created_at', 'desc')
     .then((rows) => {
       const posts = camelizeKeys(rows);
 
@@ -45,5 +45,21 @@ router.get('/posts/:id', (req, res, next) => {
     });
 });
 
+router.post('/posts', (req, res, next) => {
+  const { title, userId, content, img } = req.body;
+
+  const insertPost = { title, userId, content, img };
+
+  knex('posts')
+    .insert(decamelizeKeys(insertPost), '*')
+    .then((rows) => {
+      const post = camelizeKeys(rows[0]);
+
+      res.send(post);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
 module.exports = router;
