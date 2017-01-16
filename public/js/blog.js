@@ -5,6 +5,7 @@
 
     $.getJSON('/posts')
       .done((posts) => {
+        console.log(posts);
         const $posts = $('#posts');
 
         for (const post of posts) {
@@ -15,6 +16,7 @@
               'data-tooltip': post.title
             })
             .tooltip();
+
 
             const $col = $('<div>'.addClass('col s12 m6'));
             const $card = $('<div>').addClass('card medium');
