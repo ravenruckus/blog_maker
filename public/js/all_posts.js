@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    $('.parallax').parallax();
+    // $('.parallax').parallax();
     const truncateString = function(str, num) {
       if(num > str.length) {
         return str;
