@@ -59,6 +59,7 @@
             $col.append($card);
             $posts.append($col);
 
+
        }
     })
     .fail(() => {

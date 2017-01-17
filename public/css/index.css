@@ -32,6 +32,9 @@ footer.page-footer .footer-copyright {
 }
 
 .ind_post img {
-  width: 30%;
+  width: 40%;
   margin-left: 30%;
+}
+.ind_post h2 {
+  text-align: center;
 }
