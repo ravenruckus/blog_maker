@@ -2,6 +2,7 @@
     'use strict';
 
     const postId = window.QUERY_PARAMETERS.id;
+
     if (!postId) {
       window.location.href = '/all_posts.html';
     }
@@ -12,12 +13,42 @@
       $('#content').val(post.content);
 
       Materialize.updateTextFields();
-    }
+    };
+
+    const attachListeners = function(post) {
+      // console.log(post.id);
+      $('#deletePost').click((event) => {
+        // console.log(event);
+        event.preventDefault();
+
+      //   $('#deleteModal').openModal();
+      // });
+      //
+      // $('#confirmDelete').click((event) => {
+      //   event.preventDefault();
+
+        const options = {
+          dataType: 'json',
+          type: 'DELETE',
+          url: `/posts/${post.id}`
+        };
+
+        $.ajax(options)
+          .done(() => {
+            window.location.href = '/all_posts.html';
+          })
+          .fail(() => {
+            Materialize.toast('Unable to delete post', 3000);
+          });
+      });
+
+
+    };
 
     $.getJSON(`/posts/${postId}`)
       .done((post) => {
         renderPost(post);
-        console.log(post.title);
+        attachListeners(post);
         const $post = $('#post');
         const $col = $('<div>').addClass('col s12 ind_post');
         const $title = $('<h2>').text(post.title);

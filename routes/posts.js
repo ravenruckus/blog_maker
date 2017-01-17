@@ -62,4 +62,73 @@ router.post('/posts', (req, res, next) => {
     });
 });
 
+router.patch('/posts/:id', (req, res, next) => {
+  const id = Number.parseInt(req.params.id);
+
+  if (Number.isNaN(id)) {
+    return next();
+  }
+
+  knex('posts')
+    .where('id', id)
+    .first()
+    .then((post) => {
+      if (!post) {
+        throw boom.create(404, 'Not Found');
+      }
+
+      const { title, content, img } = req.body;
+      const updatePost = {};
+
+      if (title) {
+        updatePost.title = title;
+      }
+
+      if (content) {
+        updatePost.content = content;
+      }
+
+      if (img) {
+        updatePost.img = img;
+      }
+
+      return knex('posts')
+        .update(decamelizeKeys(updatePost), '*')
+        .where('id', id);
+    })
+    .then((rows) => {
+      const post = camelizeKeys(rows[0]);
+
+      res.send(post);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.delete('/posts/:id', (req, res, next) => {
+  const id = Number.parseInt(req.params.id);
+
+  if (Number.isNaN(id)) {
+    return next();
+  }
+
+  knex('posts')
+    .del('*')
+    .where('id', id)
+    .then((posts) => {
+      const post = posts[0];
+
+      if (!post) {
+        return next();
+      }
+      delete post.id;
+      res.send(camelizeKeys(post));
+    })
+    .catch((err) => {
+      console.log(err);
+      next(err);
+    });
+});
+
 module.exports = router;

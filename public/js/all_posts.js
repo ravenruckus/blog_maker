@@ -34,7 +34,6 @@
             })
             .tooltip();
             const postBlurb = truncateString(post.content, 150);
-            // const postBlurb = post.slice(0,20);
             const $col = $('<div>').addClass('col s12');
             const $card = $('<div>').addClass('card small');
             const $cardImage = $('<div>').addClass('card-image');
