@@ -1,6 +1,7 @@
 (function() {
     'use strict';
 
+    $('.modal').modal();
     const postId = window.QUERY_PARAMETERS.id;
 
     if (!postId) {
@@ -16,12 +17,10 @@
     };
 
     const attachListeners = function(post) {
-      // console.log(post.id);
       $('#deletePost').click((event) => {
-        // console.log(event);
         event.preventDefault();
 
-      //   $('#deleteModal').openModal();
+        // $('#deleteModal').openModal();
       // });
       //
       // $('#confirmDelete').click((event) => {
