@@ -8,21 +8,27 @@
 
         for (const tag of tags) {
 
-          console.log(tags);
 
-            const $p = $('<p>').text(tag.name);
-            const $input = $( "type", "checkbox").attr('id', tag.id).addClass("checkbox");
-            const $label = $(tag.name);
+          // <p>
+          //   <input type="checkbox" id="test6" />
+          //   <label for="test6">Yellow</label>
+          // </p>
+            const $p = $('<p>');
+            const $input = $('<input type="checkbox">').attr('id', tag.id);
+            const $label = $('<label>').attr('for', tag.id).text(tag.name);
 
-            $tags.append($p);
+
             $p.append($input);
             $p.append($label);
+            $tags.append($p);
 
        }
+       const $button = $('<a>').addClass('waves-effect waves-light btn-large').text('Delete');
+       $tags.append($button);
+       
     })
     .fail(() => {
       Materialize.toast('Unable to retrieve tags', 3000);
     })
-
 
 })();
