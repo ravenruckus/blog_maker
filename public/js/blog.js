@@ -26,28 +26,25 @@
           console.log(post);
           const $anchor = $('<a>')
             .attr({
-              href: `/blog.html?id=${post.id}`,
+              href: `/blog_post.html?id=${post.id}`,
               'data-delay': '50',
               'data-tooltip': post.title
             })
           const $anchor2 = $('<a>')
             .attr({
-              href: `/blog.html?id=${post.id}`,
+              href: `/blog_post.html?id=${post.id}`,
               'data-delay': '50',
               'data-tooltip': post.title
             })
             .tooltip();
             const postBlurb = truncateString(post.content, 150);
-            // const postBlurb = post.slice(0,20);
             const $col = $('<div>').addClass('col s12 m6');
             const $card = $('<div>').addClass('card medium');
             const $cardImage = $('<div>').addClass('card-image');
             const $img = $('<img>').attr({ src: post.img, alt: post.title });
             const $cardContent = $('<div>').addClass('card-content');
             const $p = $('<p>').text(postBlurb);
-            // const $p = $('<p>').text(post.content);
             const $cardAction = $('<div>').addClass('card-action');
-
 
             $cardImage.append($img);
             $anchor2.append($cardImage);
@@ -58,7 +55,6 @@
             $card.append($cardAction);
             $col.append($card);
             $posts.append($col);
-
 
        }
     })
