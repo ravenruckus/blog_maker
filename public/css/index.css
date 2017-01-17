@@ -8,6 +8,10 @@ body {
   font-family: 'Titillium Web', sans-serif;
 }
 
+main {
+  flex: 1 0 auto;
+}
+
 main .parallax-container {
   height: 350px;
 }
