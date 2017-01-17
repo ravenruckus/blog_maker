@@ -21,10 +21,10 @@
         event.preventDefault();
 
         // $('#deleteModal').openModal();
-      // });
-      //
-      // $('#confirmDelete').click((event) => {
-      //   event.preventDefault();
+      });
+
+      $('#confirmDelete').click((event) => {
+        event.preventDefault();
 
         const options = {
           dataType: 'json',
