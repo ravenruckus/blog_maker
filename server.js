@@ -32,8 +32,10 @@ const path = require('path');
 app.use(express.static(path.join('public')));
 
 const posts = require('./routes/posts');
+const tags = require('./routes/tags');
 
 app.use(posts);
+app.use(tags);
 
 app.use((_req, res) => {
   res.sendStatus(404);
