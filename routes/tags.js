@@ -46,12 +46,12 @@ router.get('/tags/:id', (req, res, next) => {
 });
 
 router.post('/tags', (req, res, next) => {
-  const { title, userId, content, img } = req.body;
+  const { name, id } = req.body;
 
-  const insertPost = { name };
+  const insertTag = { name, id};
 
   knex('tags')
-    .insert(decamelizeKeys(insertPost), '*')
+    .insert(decamelizeKeys(insertTag), '*')
     .then((rows) => {
       const tag = camelizeKeys(rows[0]);
 
