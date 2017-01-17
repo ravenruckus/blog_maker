@@ -20,7 +20,6 @@
       $('#deletePost').click((event) => {
         event.preventDefault();
 
-        // $('#deleteModal').openModal();
       });
 
       $('#confirmDelete').click((event) => {
@@ -40,7 +39,6 @@
             Materialize.toast('Unable to delete post', 3000);
           });
       });
-
 
     };
 
@@ -62,5 +60,10 @@
       .fail(() => {
         Materialize.toast('Unable to retrieve post', 3000);
       });
+
+      $('#editPost').click((event) => {
+        event.preventDefault();
+        window.location.href = `edit_post.html?id=${postId}`;
+      })
 
 })();
