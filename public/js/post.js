@@ -12,7 +12,35 @@
       $('#content').val(post.content);
 
       Materialize.updateTextFields();
-    }
+    };
+
+    const attachListeners = function(post) {
+      $('#deletePost').click((event) => {
+        event.preventDefault();
+
+        $('#deleteModal').openModal();
+      });
+
+      $('#confirmDelete').click((event) => {
+        event.preventDefault();
+
+        const options = {
+          dataType: 'json',
+          type: 'DELETE',
+          url: `/all_posts/${post.id}`
+        };
+
+        $ajax(options)
+          .done(() => {
+            window.location.href = '/all_posts.html';
+          })
+          .fail(() => {
+            Materialize.toast('Unable to delete post', 3000);
+          });
+      });
+
+
+    };
 
     $.getJSON(`/posts/${postId}`)
       .done((post) => {

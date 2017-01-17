@@ -106,8 +106,29 @@ router.patch('/posts/:id', (req, res, next) => {
     });
 });
 
-// router.delete('/posts/:id', (req, res, next) => {
-//
-// })
+router.delete('/posts/:id', (req, res, next) => {
+  const id = Number.parseInt(req.params.id);
+
+  if (Number.isNaN(id)) {
+    return next();
+  }
+
+  knex('posts')
+    .del('*')
+    .where('id', id)
+    .then((posts) => {
+      const post = posts[0];
+
+      if (!post) {
+        return next();
+      }
+      delete post.id;
+      res.send(camelizeKeys(post));
+    })
+    .catch((err) => {
+      console.log(err);
+      next(err);
+    });
+});
 
 module.exports = router;
