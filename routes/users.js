@@ -34,7 +34,6 @@ router.post('/users', (req, res, next) => {
       return bcrypt.hash(password, 12);
     })
     .then((hashedPassword) => {
-      const { firstName, lastName } = req.body;
       const insertUser = { email, hashedPassword };
 
       return knex('users').insert(decamelizeKeys(insertUser), '*');
