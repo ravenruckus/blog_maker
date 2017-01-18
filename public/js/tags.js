@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    const attachListener = function(tags) {
+    const attachListener = function(tag) {
       $('#tagsForm').submit((event) => {
         event.preventDefault();
 
@@ -21,9 +21,10 @@
         });
     };
 
+
     $.getJSON('/tags')
       .done((tags) => {
-        attachListener(tags);
+        attachListener(tag);
 
         const $tagsForm = $('#tagsForm');
 

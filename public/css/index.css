@@ -27,6 +27,10 @@ nav .brand-logo {
   background-size: 60px 60px;
 }
 
+.collectionCol {
+  margin-top: 10%;
+}
+
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
   color: #000;
 }
