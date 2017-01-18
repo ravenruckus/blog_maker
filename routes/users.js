@@ -9,23 +9,9 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 
 const router = express.Router();
 
+
 router.get('/users', (_req, res, next) => {
-
   knex('users')
-    .where('email', email)
-    .first()
-    .then((user) => {
-      if (user) {
-        throw boom.create(400, 'Email already exists');
-      }
-
-      return bcrypt.hash(password, 12);
-    })
-    .then((hashedPassword) => {
-      const insertUser = { email, hashedPassword };
-
-      return knex('users').insert(decamelizeKeys(insertUser), '*');
-    })
     .then((rows) => {
       const users = camelizeKeys(rows);
 
@@ -37,8 +23,7 @@ router.get('/users', (_req, res, next) => {
 });
 
 
-
-  router.get('/users/:id', (req, res, next) => {
+router.get('/users/:id', (req, res, next) => {
     const id = Number.parseInt(req.params.id);
 
     if (Number.isNaN(id)) {
