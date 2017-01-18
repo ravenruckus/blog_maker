@@ -3,7 +3,7 @@
 const bcrypt = require('bcrypt-as-promised');
 const boom = require('boom');
 const express = require('express');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 const { camelizeKeys } = require('humps');
 
@@ -35,9 +35,20 @@ router.post('/token', (req, res, next) => {
 
       user = camelizeKeys(row);
 
-      return bcrypt.compare(password, user.hashedPassword);
+      return bcrypt.compare(req.body.password, user.hashedPassword);
     })
     .then(() => {
+      const claim = { userId: user.id };
+      const token = jwt.sign(claim, process.env.JWT_KEY, {
+        expiresIn: '7 days'
+      });
+
+      res.cookie('token', token, {
+        httpOnly: true,
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        secure: router.get('env') === 'production'
+      });
+
       delete user.hashedPassword;
 
       res.send(user);
@@ -48,6 +59,21 @@ router.post('/token', (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+});
+
+router.get('/token', (req, res) => {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, _payload) => {
+    if (err) {
+      return res.send(false);
+    }
+
+    res.send(true);
+  });
+});
+
+router.delete('/token', (req, res) => {
+  res.clearCookie('token');
+  res.end();
 });
 
 // router.get('/token', (req, res) => {
