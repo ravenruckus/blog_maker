@@ -40,30 +40,63 @@
     //     });
     // };
 
-    const attachListener = function(tag) {
-      $('#new_tag').click((event) => {
+      // $('#new_tag').submit((event) => {
+      //   event.preventDefault();
+      //   const newTag = $('#tag_name').val().trim();
+      //
+      //   if(!newTag) {
+      //     return Materialize.toast('You must enter a new tag name', 3000);
+      //   }
+      //
+      //   const options = {
+      //     contentType: 'application/json',
+      //     data: JSON.stringify({ newTag }),
+      //     dataType: 'json',
+      //     type: 'POST',
+      //     url: 'tags'
+      //   };
+      //
+      //   $.ajax(options)
+      //     .done(() => {
+      //       window.location.href = '/tags.html';
+      //     })
+      //     .fail(($xhr) => {
+      //       Materialize.toast($xhr.responseText, 3000)
+      //     });
+      // });
+
+      $('#newTag').submit((event) => {
         event.preventDefault();
 
+        const tagName = $('#tagName').val().trim();
+        console.log(tagName);
+
+        if(!tagName) {
+          return Materialize.toast('A tag name must be entered', 3000);
+        }
+
+
         const options = {
+          contentType: 'application/json',
+          data: JSON.stringify({ name: tagName }),
           dataType: 'json',
           type: 'POST',
-          url: `/tags/${tags.id}`
+          url: 'tags'
         };
 
         $.ajax(options)
           .done(() => {
-            window.location.herf = '/tags.html';
+            window.location.href = '/tags.html';
           })
-          .fail(() => {
-            Materialize.toast('Unable')
-          })
-      })
-    }
+          .fail(($xhr) => {
+            Materialize.toast($xhr.responseText, 3000)
+          });
+        });
+
 
 
     $.getJSON('/tags')
       .done((tags) => {
-        // attachListener(tag);
 
         const $tagsForm = $('#tagsForm');
 
