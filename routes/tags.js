@@ -1,5 +1,5 @@
 'use strict';
-
+const boom = require('boom');
 const express = require('express');
 const router = express.Router();
 const knex = require('../knex');
@@ -58,6 +58,31 @@ router.post('/tags', (req, res, next) => {
       res.send(tag);
     })
     .catch((err) => {
+      next(err);
+    });
+});
+
+router.delete('/tags/:id', (req, res, next) => {
+  const id = Number.parseInt(req.params.id);
+
+  if (Number.isNaN(id)) {
+    return next();
+  }
+
+  knex('tags')
+    .del('*')
+    .where('id', id)
+    .then((tags) => {
+      const tag = tags[0];
+
+      if (!tag) {
+        return next();
+      }
+      delete tag.id;
+      res.send(camelizeKeys(tag));
+    })
+    .catch((err) => {
+      console.log(err);
       next(err);
     });
 });
