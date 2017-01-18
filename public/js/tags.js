@@ -40,7 +40,25 @@
     //     });
     // };
 
+    const attachListener = function(tag) {
+      $('#new_tag').click((event) => {
+        event.preventDefault();
 
+        const options = {
+          dataType: 'json',
+          type: 'POST',
+          url: `/tags/${tags.id}`
+        };
+
+        $.ajax(options)
+          .done(() => {
+            window.location.herf = '/tags.html';
+          })
+          .fail(() => {
+            Materialize.toast('Unable')
+          })
+      })
+    }
 
 
     $.getJSON('/tags')
@@ -59,21 +77,48 @@
             $tagsForm.append($p);
 
        }
-      //  const $button = $('<a>').addClass('waves-effect waves-light btn-large').text('Delete').attr('id', 'deleteButton');
-      //  $tagsForm.append($button);
-      //  attachListener(tags);
+
     })
     .fail(() => {
       Materialize.toast('Unable to retrieve tags', 3000);
     });
+
+
     const delTags = [];
     $('#tagsForm').on('click', 'input', (event) => {
-      console.log(event.target.id);
-      delTags.push(event.target.id);
-    })
+
+      const ind = delTags.indexOf(event.target.id);
+      if ( ind === -1 ) {
+        console.log(ind);
+        delTags.push(event.target.id);
+      }
+      else {
+        delTags.splice(ind,1);
+      }
+
+
+      });
 
     $('#deleteTag').click((event) => {
       console.log(delTags);
+
+      for (const tag of delTags) {
+        const options = {
+          dataType: 'json',
+          type: 'DELETE',
+          url: `/tags/${tag}`
+        };
+
+        $.ajax(options)
+          .done(() => {
+            window.location.href = '/tags.html';
+          })
+
+          .fail(() => {
+            Materialize.toast('Unable to delete', 3000);          })
+      }
+
+
     });
 
 })();
