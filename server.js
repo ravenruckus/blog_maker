@@ -36,7 +36,7 @@ const users = require('./routes/users')
 const posts = require('./routes/posts');
 const tags = require('./routes/tags');
 
-app.use(token);
+// app.use(token);
 app.use(users);
 app.use(posts);
 app.use(tags);
