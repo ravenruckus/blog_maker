@@ -87,4 +87,30 @@ router.delete('/tags/:id', (req, res, next) => {
     });
 });
 
+// router.delete(`/tags/${delTags}`, (req, res, next) => {
+//   const id = Number.parseInt(req.params.id);
+//
+//   if (Number.isNaN(id)) {
+//     return next();
+//   }
+//
+//   knex('tags')
+//     .del('*')
+//     .whereIn('id', delTags)
+//     .then((tags) => {
+//       // const tag = tags[0];
+//
+//       if (!tags) {
+//         return next();
+//       }
+//       // delete tag.id;
+//       res.send(camelizeKeys(tags));
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       next(err);
+//     });
+// });
+
+
 module.exports = router;
