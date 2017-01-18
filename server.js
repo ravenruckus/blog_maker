@@ -31,13 +31,13 @@ const path = require('path');
 
 app.use(express.static(path.join('public')));
 
+// const token = require('./routes/token')
 // const users = require('./routes/users')
-// const token = require('./route/token')
 const posts = require('./routes/posts');
 const tags = require('./routes/tags');
 
-// app.use(users);
 // app.use(token);
+// app.use(users);
 app.use(posts);
 app.use(tags);
 
