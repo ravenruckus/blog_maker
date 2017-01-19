@@ -3,7 +3,7 @@
 const bcrypt = require('bcrypt-as-promised');
 const boom = require('boom');
 const express = require('express');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 
@@ -21,7 +21,7 @@ const authorize = function(req, res, next) {
   });
 };
 
-router.get('/users', authorize,  (_req, res, next) => {
+router.get('/users',  (_req, res, next) => {
   knex('users')
     .then((rows) => {
       const users = camelizeKeys(rows);

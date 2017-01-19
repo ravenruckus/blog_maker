@@ -13,13 +13,13 @@ window.QUERY_PARAMETERS = {};
 
 $('.button-collapse').sideNav();
 
-// $.getJSON('/token')
-//   .done((loggedIn) => {
-//     if(!loggedIn) {
-//       window.location.href = '/login.html';
-//
-//     }
-// });
+$.getJSON('/token')
+  .done((loggedIn) => {
+    if(!loggedIn) {
+      window.location.href = '/login.html';
+
+    }
+});
 
 $.getJSON('/token')
   .done((loggedIn) => {

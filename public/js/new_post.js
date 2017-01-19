@@ -1,95 +1,102 @@
 (function() {
   'use strict';
 
+  const tagIds = [];
 
 
-$('#newPost').submit((event) => {
-  event.preventDefault();
+  // Add event listener to get tags into array when clicked
+    $.getJSON('/tags')
+      .done((tags) => {
+        const $blogTags = $('#blogTags');
 
-  const title = $('#title').val().trim();
-  const img = $('#img').val().trim();
-  const content = $('#content').val().trim();
+        for (const tag of tags) {
 
-  if(!title) {
-    return Materialize.toast('Title must not be blank', 3000);
-  }
+            const $li = $('<li>').attr('data-id', tag.id).text(tag.name);
+            $blogTags.append($li);
+       }
 
-  if(!img) {
-    return Materialize.toast('Please provide an image URL', 3000);
-  }
+      })
+      .then(() =>{
 
-  if(!content) {
-    return Materialize.toast('Please provide some content', 3000);
-  }
+      })
+      .fail(() => {
+        Materialize.toast('Unable to retrieve tags', 3000);
+      });
 
-  const options = {
-    contentType: 'application/json',
-    data: JSON.stringify({ title, img, content}),
-    dataType: 'json',
-    type: 'POST',
-    url: 'posts'
-  };
+    $('#blogTags').on('click', 'li', (event) => {
+      const tagId = parseInt($(event.target).attr('data-id'));
 
-  $.ajax(options)
-    .then((data2) => {
-      console.log(data2.id);
-    })
-    //can I get the ids of the tags and post to the tags_posts? here.
-    .done(() => {
-      window.location.href = '/all_posts.html';
-    })
-    .fail(($xhr) => {
-      Materialize.toast($xhr.responseText, 3000)
-    });
-  })
+      const ind = tagIds.indexOf(tagId);
+
+      if ( ind === -1 ) {
+        tagIds.push(tagId);
+      }
+      else {
+        tagIds.splice(ind,1);
+      }
+
+      });
 
 
-// put event listener that puts tags into an array when clicked like the delete tag page
-  $.getJSON('/tags')
-    .done((tags) => {
-      // console.log(tags);
-      const $blogTags = $('#blogTags');
+  $('#submit').click((event) => {
+    event.preventDefault();
 
-      for (const tag of tags) {
+    const title = $('#title').val().trim();
+    const img = $('#img').val().trim();
+    const content = $('#content').val().trim();
 
-        const $anchor = $('<a>')
-          .attr({
-            href: `#`,
-            'data-delay': '50',
-            // 'data-tooltip': post.title
-          })
+    if(!title) {
+      return Materialize.toast('Title must not be blank', 3000);
+    }
 
-          // .tooltip();
-          const $li = $('<li>').attr('id', tag.id).text(tag.name);
-          $anchor.append($li);
-          $blogTags.append($anchor);
-     }
-  })
-  .then((data) =>{
-    // console.log(data);
-    $.getJSON('/posts')
-      .done((posts) => {
-        // console.log(posts);
+    if(!img) {
+      return Materialize.toast('Please provide an image URL', 3000);
+    }
+
+    if(!content) {
+      return Materialize.toast('Please provide some content', 3000);
+    }
+
+    const options = {
+      contentType: 'application/json',
+      data: JSON.stringify({ title, img, content, tagIds }),
+      dataType: 'json',
+      type: 'POST',
+      url: 'posts',
+    };
+
+    $.ajax(options)
+      .done((data) => {
+        console.log(options);
+        console.log(data);
+        window.location.href = '/all_posts.html';
+
       })
 
-  })
-  .fail(() => {
-    Materialize.toast('Unable to retrieve tags', 3000);
-  });
+    // $.ajax(options)
+    //   .done((newPost) => {
+    //     console.log(newPost.id)
+    //     // for (let i=0; i<tagIds.length; i++) {
+    //
+    //     const options2 = {
+    //       contentType: 'application/json',
+    //       data: JSON.stringify({ tagId: tagIds[0], postId: newPost.id }),
+    //       dataType: 'json',
+    //       type: 'POST',
+    //       url: 'posts_tags'
+    //     };
+    //
+    //   $.ajax(options2)
+    //     .done(() => {
+    //     })
+    //     .fail(() => {
+    //       console.log('err')
+    //     })
+      .fail(($xhr) => {
+        Materialize.toast($xhr.responseText, 3000)
+      });
+    })
 
-  const addTags = [];
-  $('#tagsForm').on('click', 'li', (event) => {
-
-    const ind = addTags.indexOf(event.target.id);
-    if ( ind === -1 ) {
-      console.log(ind);
-      delTags.push(event.target.id);
-    }
-    else {
-      delTags.splice(ind,1);
-    }
 
 
-    });
-    
 })();

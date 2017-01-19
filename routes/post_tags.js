@@ -36,6 +36,18 @@ const authorize = function(req, res, next) {
 //     });
 // });
 
+router.get('/posts_tags', (req, res, next) => {
+  knex('posts_tags')
+  .then((rows) => {
+    const posts_tags = camelizeKeys(rows);
+
+    res.send(posts_tags);
+  })
+  .catch((err) => {
+    next(err);
+  });
+});
+
 router.post('/posts_tags',  (req, res, next) => {
   const postId = Number.parseInt(req.body.postId);
   const tagId = Number.parseInt(req.body.tagId);
