@@ -14,7 +14,11 @@ main {
 
 main .parallax-container {
   height: 350px;
-  margin-bottom: 20px;
+}
+
+.parallax-window {
+    min-height: 400px;
+    background: transparent;
 }
 
 nav .brand-logo {
@@ -26,6 +30,10 @@ nav .brand-logo {
   background-repeat: no-repeat;
   background-position: 3% 3px;
   background-size: 60px 60px;
+}
+
+.parallax img {
+  max-width: 50%;
 }
 
 .collectionCol {
