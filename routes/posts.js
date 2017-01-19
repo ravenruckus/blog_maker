@@ -57,42 +57,42 @@ router.get('/posts/:id', (req, res, next) => {
     });
 });
 
-// router.post('/posts', authorize, (req, res, next) => {
-//   const { title, userId, content, img } = req.body;
-//
-//   const insertPost = { title, userId, content, img };
-//
-//   knex('posts')
-//     .insert(decamelizeKeys(insertPost), '*')
-//     .then((rows) => {
-//       const post = camelizeKeys(rows[0]);
-//
-//       res.send(post);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// });
-let tagId;
+
+
 router.post('/posts', authorize, (req, res, next) => {
+
+  let tagIdsArr;
+  let post;
+  
   const { title, userId, content, img, tagIds } = req.body;
-  tagId = req.body.tagIds;
+
+  tagIdsArr = req.body.tagIds;
+
   const insertPost = { title, userId, content, img };
+
 
   knex('posts')
     .insert(decamelizeKeys(insertPost), '*')
     .then((rows) => {
-      console.log(tagId)
-      const post = camelizeKeys(rows[0]);
-      const insertPostTag = { tagId: tagId[0], postId: post.id };
+      console.log(tagIdsArr)
+      post = camelizeKeys(rows[0]);
 
-      return knex('posts_tags')
-        .insert(decamelizeKeys(insertPostTag), '*');
+      const insertPostTag = [];
 
-      // res.send(post);
+      if(tagIdsArr.length != 0) {
+        for(const element in tagIdsArr) {
+          insertPostTag.push({ tagId: tagIdsArr[element], postId: post.id });
+        }
+
+        return knex('posts_tags')
+          .insert(decamelizeKeys(insertPostTag), '*');
+      }
+      else {
+        res.send(post);
+      }
     })
-    .then((rows) => {
-      const postTag = camelizeKeys(rows[0]);
+    .then(() => {
+      res.send(post);
     })
     .catch((err) => {
       next(err);
