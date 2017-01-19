@@ -101,13 +101,13 @@
         const $tagsForm = $('#tagsForm');
 
         for (const tag of tags) {
-            const $p = $('<p>');
+            const $p = $('<p>').addClass('center-align');
             const $input = $('<input type="checkbox">').attr('id', tag.id);
             const $label = $('<label>').attr('for', tag.id).text(tag.name);
 
-            $p.append($input);
-            $p.append($label);
-            $tagsForm.append($p);
+            $p.prepend($label);
+            $p.prepend($input);
+            $tagsForm.prepend($p);
 
        }
 
