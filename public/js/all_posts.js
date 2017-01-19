@@ -25,7 +25,9 @@
         const $posts = $('#posts');
 
         for (const post of posts) {
-          console.log(post);
+
+          const shortDate = post.createdAt.substring(0,10);
+
           const $anchor = $('<a>')
             .attr({
               href: `/post.html?id=${post.id}`,
@@ -53,7 +55,7 @@
             $card.append($anchor2);
             $cardContent.append($p);
             $card.append($cardContent);
-            $cardAction.append($anchor.text(`${post.title} - ${post.createdAt}`));
+            $cardAction.append($anchor.text(`${post.title} - ${shortDate}`));
             $card.append($cardAction);
             $col.append($card);
             $posts.append($col);
