@@ -23,14 +23,13 @@ const truncateString = function(str, num) {
 $.getJSON(`/posts_tags/${id}`)
   .done((posts) => {
   console.log(posts);
-    const $posts = $('#posts');
 
+    const $posts = $('#posts');
 
     for (const post of posts) {
 
       const shortDate = post.createdAt.substring(0,10);
 
-      console.log(post);
       const $anchor = $('<a>')
         .attr({
           href: `/blog_post.html?id=${post.id}`,
@@ -63,7 +62,6 @@ $.getJSON(`/posts_tags/${id}`)
         $col.append($card);
         $posts.append($col);
 
-        $tagTitle.append('<h3>').text(tag.name);
    }
 })
 .fail(() => {

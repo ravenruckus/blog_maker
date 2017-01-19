@@ -5,40 +5,66 @@ exports.seed = function(knex) {
     .then(() => {
       return knex('tags').insert([{
     id: 1,
-    name: 'Caramel',
+    name: 'Strawberry',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
   }, {
     id: 2,
-    name: 'Chocolate',
+    name: 'Valentine\'s Day',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
   }, {
     id: 3,
-    name: 'Nougat',
+    name: 'Macaroons',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
   }, {
     id: 4,
-    name: 'Vanilla',
+    name: 'Luxury Cookies',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
   }, {
     id: 5,
-    name: 'Coconut',
+    name: 'Sprinkles!',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
   }, {
     id: 6,
-    name: 'Brownies',
+    name: 'Cupcakes',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
   },  {
     id: 7,
-    name: 'Cake',
+    name: 'Chocolate Frosting',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
-    }])
+  },
+  {
+    id: 8,
+    name: 'Mousse',
+    created_at: new Date('2016-01-12 14:26:16 UTC'),
+    updated_at: new Date('2016-01-12 14:26:16 UTC')
+  },{
+    id: 9,
+    name: 'Strawbe',
+    created_at: new Date('2016-01-12 14:26:16 UTC'),
+    updated_at: new Date('2016-01-12 14:26:16 UTC')
+  },{
+    id: 10,
+    name: 'Peppermint',
+    created_at: new Date('2016-01-12 14:26:16 UTC'),
+    updated_at: new Date('2016-01-12 14:26:16 UTC')
+  },{
+    id: 11,
+    name: 'Cookies',
+    created_at: new Date('2016-01-12 14:26:16 UTC'),
+    updated_at: new Date('2016-01-12 14:26:16 UTC')
+  },{
+    id: 12,
+    name: 'Fudge',
+    created_at: new Date('2016-01-12 14:26:16 UTC'),
+    updated_at: new Date('2016-01-12 14:26:16 UTC')
+  },])
   })
     .then(function(){
      return knex.raw("SELECT setval('tags_id_seq', (SELECT MAX(id) FROM tags));");
