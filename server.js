@@ -35,11 +35,13 @@ const token = require('./routes/token')
 const users = require('./routes/users')
 const posts = require('./routes/posts');
 const tags = require('./routes/tags');
+const post_tags = require('./routes/post_tags');
 
 app.use(token);
 app.use(users);
 app.use(posts);
 app.use(tags);
+app.use(post_tags);
 
 app.use((_req, res) => {
   res.sendStatus(404);
