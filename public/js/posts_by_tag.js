@@ -25,6 +25,7 @@ $.getJSON(`/posts_tags/${id}`)
   console.log(posts);
     const $posts = $('#posts');
 
+
     for (const post of posts) {
 
       const shortDate = post.createdAt.substring(0,10);
@@ -62,11 +63,27 @@ $.getJSON(`/posts_tags/${id}`)
         $col.append($card);
         $posts.append($col);
 
+        $tagTitle.append('<h3>').text(tag.name);
    }
 })
 .fail(() => {
   Materialize.toast('Unable to retrieve posts', 3000);
 })
+
+$.getJSON(`/tags/${id}`)
+  .done((tag) => {
+    console.log(tag.name);
+    const $tagTitle = $('#tagTitle');
+    const $h3 = $('<h3>').text(tag.name);
+
+    $tagTitle.append($h3);
+
+
+})
+.fail(() => {
+  Materialize.toast('Unable to retrieve tags', 3000);
+});
+
 
 
 })();
