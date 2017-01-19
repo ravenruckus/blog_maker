@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  $('loginForm').submit((event) => {
+  $('#loginForm').submit((event) => {
     event.preventDefault();
 
     const email = $('#email').val().trim();

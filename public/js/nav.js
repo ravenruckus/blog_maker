@@ -10,3 +10,5 @@ window.QUERY_PARAMETERS = {};
     });
   }
 })();
+
+$('.button-collapse').sideNav();
