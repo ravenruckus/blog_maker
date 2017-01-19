@@ -69,7 +69,6 @@
         event.preventDefault();
 
         const tagName = $('#tagName').val().trim();
-        console.log(tagName);
 
         if(!tagName) {
           return Materialize.toast('A tag name must be entered', 3000);
@@ -119,18 +118,15 @@
 
       const ind = delTags.indexOf(event.target.id);
       if ( ind === -1 ) {
-        console.log(ind);
         delTags.push(event.target.id);
       }
       else {
         delTags.splice(ind,1);
       }
 
-
       });
 
     $('#deleteTag').click((event) => {
-      console.log(delTags);
 
       for (const tag of delTags) {
         const options = {

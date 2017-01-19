@@ -3,7 +3,6 @@
 
  const tagIds = [];
 
-
  // Add event listener to get tags into array when clicked
    $.getJSON('/tags')
      .done((tags) => {
@@ -24,7 +23,13 @@
      });
 
    $('#blogTags').on('click', 'li', (event) => {
+
+
      const tagId = parseInt($(event.target).attr('data-id'));
+     const highlight = $(event.target)
+
+     highlight.addClass('highlight');
+
 
      const ind = tagIds.indexOf(tagId);
 
@@ -33,6 +38,8 @@
      }
      else {
        tagIds.splice(ind,1);
+       highlight.removeClass('highlight');
+
      }
 
      });

@@ -60,3 +60,13 @@ footer.page-footer .footer-copyright {
   color: red;
   font-size: 2em;
 }
+
+
+.highlight {
+  color: rgb(240, 36, 8);
+
+}
+
+.tags{
+  font-size: 1.3rem;
+}
