@@ -57,17 +57,42 @@ router.get('/posts/:id', (req, res, next) => {
     });
 });
 
+// router.post('/posts', authorize, (req, res, next) => {
+//   const { title, userId, content, img } = req.body;
+//
+//   const insertPost = { title, userId, content, img };
+//
+//   knex('posts')
+//     .insert(decamelizeKeys(insertPost), '*')
+//     .then((rows) => {
+//       const post = camelizeKeys(rows[0]);
+//
+//       res.send(post);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
+let tagId;
 router.post('/posts', authorize, (req, res, next) => {
-  const { title, userId, content, img } = req.body;
-
+  const { title, userId, content, img, tagIds } = req.body;
+  tagId = req.body.tagIds;
   const insertPost = { title, userId, content, img };
 
   knex('posts')
     .insert(decamelizeKeys(insertPost), '*')
     .then((rows) => {
+      console.log(tagId)
       const post = camelizeKeys(rows[0]);
+      const insertPostTag = { tagId: tagIds[0].id, postId: post.id };
 
-      res.send(post);
+      return knex('posts_tags')
+        .insert(decamelizeKeys(insertPostTag), '*');
+
+      // res.send(post);
+    })
+    .then((rows) => {
+      const postTag = camelizeKeys(rows[0]);
     })
     .catch((err) => {
       next(err);
