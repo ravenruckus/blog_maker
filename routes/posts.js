@@ -84,7 +84,7 @@ router.post('/posts', authorize, (req, res, next) => {
     .then((rows) => {
       console.log(tagId)
       const post = camelizeKeys(rows[0]);
-      const insertPostTag = { tagId: tagIds[0].id, postId: post.id };
+      const insertPostTag = { tagId: tagId[0], postId: post.id };
 
       return knex('posts_tags')
         .insert(decamelizeKeys(insertPostTag), '*');
