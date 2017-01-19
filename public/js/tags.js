@@ -75,7 +75,6 @@
           return Materialize.toast('A tag name must be entered', 3000);
         }
 
-
         const options = {
           contentType: 'application/json',
           data: JSON.stringify({ name: tagName }),
@@ -93,15 +92,13 @@
           });
         });
 
-
-
     $.getJSON('/tags')
       .done((tags) => {
 
         const $tagsForm = $('#tagsForm');
 
         for (const tag of tags) {
-            const $p = $('<p>').addClass('center-align');
+            const $p = $('<p>').addClass('left-align');
             const $input = $('<input type="checkbox">').attr('id', tag.id);
             const $label = $('<label>').attr('for', tag.id).text(tag.name);
 
