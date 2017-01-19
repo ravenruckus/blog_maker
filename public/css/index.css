@@ -46,3 +46,8 @@ footer.page-footer .footer-copyright {
 .ind_post h2 {
   text-align: center;
 }
+
+.deleteIcon:hover {
+  color: red;
+  font-size: 2em;
+}

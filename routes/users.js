@@ -65,6 +65,32 @@ router.get('/users/:id', (req, res, next) => {
         .catch((err) => {
           next(err);
         });
+      });
+
+    router.delete('/users/:id', (req, res, next) => {
+        const id = Number.parseInt(req.params.id);
+
+        if(Number.isNaN(id)) {
+          return next();
+        }
+
+        knex('users')
+          .del('*')
+          .where('id', id)
+          .then((users) => {
+            const user = users[0];
+
+            if(!user) {
+              return next();
+            }
+            delete user.id;
+            res.send(camelizeKeys(user));
+          })
+          .catch((err) => {
+            console.log(err);
+            next(err);
+          });
+        });
 
     // const { email, password } = req.body;
     //
@@ -80,7 +106,6 @@ router.get('/users/:id', (req, res, next) => {
     //   .catch((err) => {
     //     next(err);
     //   });
-  });
 
 
 

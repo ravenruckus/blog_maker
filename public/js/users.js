@@ -35,33 +35,43 @@
       });
   });
 
+
   $.getJSON('/users')
     .done((users) => {
-
       const $allUsers = $('#allUsers');
-
-      // <li class="collection-item">
-      // <div>Alvin
-      // <a href="#!" class="secondary-content">
-      // <i class="material-icons">delete</i>
-      // </a>
-      // </div>
-      // </li>
 
       for (const user of users) {
         const $li = $('<li>').addClass('collection-item');
         const $div = $('<div>').text(user.email);
-        const $a = $('<a>').addClass('secondary-content');
-        const $i = $('<i>').addClass('material-icons').text('delete');
+        const $a = $('<a>').attr('href', '#!').addClass('secondary-content');
+        const $i = $('<i>').addClass('material-icons deleteIcon').text('delete');
 
         $a.append($i);
         $div.append($a);
         $li.append($div);
         $allUsers.append($li);
 
+        $($i).click((event) => {
+          event.preventDefault();
+
+          const options = {
+            dataType: 'json',
+            type: 'DELETE',
+            url: `/users/${user.id}`
+          };
+
+          $.ajax(options)
+            .done(() => {
+              window.location.href = '/users.html'
+            })
+            .fail(() => {
+              Materialize.toast('Unable to delete, user', 3000);
+            })
+        });
+
       }
     })
     .fail(() => {
       Materialize.toast('Unable to retrieve users', 3000);
-    })
+    });
 })();
