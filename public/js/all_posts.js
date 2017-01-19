@@ -12,6 +12,12 @@
         return str.slice(0,num) + '...';
       }
     }
+    $.getJSON('/token')
+      .done((loggedIn) => {
+        if (loggedIn) {
+          console.log('logged in');
+        }
+      })
 
     $.getJSON('/posts')
       .done((posts) => {

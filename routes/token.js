@@ -76,15 +76,15 @@ router.delete('/token', (req, res) => {
   res.end();
 });
 
-// router.get('/token', (req, res) => {
-//   jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, _payload) => {
-//     if (err) {
-//       return res.send(false);
-//     }
-//
-//     res.send(true);
-//   });
-// });
+router.get('/token', (req, res) => {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, _payload) => {
+    if (err) {
+      return res.send(false);
+    }
+
+    res.send(true);
+  });
+});
 //
 // router.post('/token', (req, res, next) => {
 //   const { email, password } = req.body;

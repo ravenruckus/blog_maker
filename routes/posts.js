@@ -3,10 +3,22 @@ const boom = require('boom');
 const express = require('express');
 const router = express.Router();
 const knex = require('../knex');
+const jwt = require('jsonwebtoken');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 
 
 // eslint-disable-next-line new-cap
+const authorize = function(req, res, next) {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
+    if (err) {
+      return next(boom.create(401, 'Unauthorized'));
+    }
+
+    req.claim = payload;
+
+    next();
+  });
+};
 
 router.get('/posts', (_req, res, next) => {
   knex('posts')
@@ -45,7 +57,7 @@ router.get('/posts/:id', (req, res, next) => {
     });
 });
 
-router.post('/posts', (req, res, next) => {
+router.post('/posts', authorize, (req, res, next) => {
   const { title, userId, content, img } = req.body;
 
   const insertPost = { title, userId, content, img };
@@ -62,7 +74,7 @@ router.post('/posts', (req, res, next) => {
     });
 });
 
-router.patch('/posts/:id', (req, res, next) => {
+router.patch('/posts/:id', authorize, (req, res, next) => {
   const id = Number.parseInt(req.params.id);
 
   if (Number.isNaN(id)) {
@@ -106,7 +118,7 @@ router.patch('/posts/:id', (req, res, next) => {
     });
 });
 
-router.delete('/posts/:id', (req, res, next) => {
+router.delete('/posts/:id', authorize, (req, res, next) => {
   const id = Number.parseInt(req.params.id);
 
   if (Number.isNaN(id)) {
