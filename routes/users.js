@@ -9,8 +9,19 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 
 const router = express.Router();
 
+const authorize = function(req, res, next) {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
+    if (err) {
+      return next(boom.create(401, 'Unauthorized'));
+    }
 
-router.get('/users', (_req, res, next) => {
+    req.claim = payload;
+
+    next();
+  });
+};
+
+router.get('/users', authorize,  (_req, res, next) => {
   knex('users')
     .then((rows) => {
       const users = camelizeKeys(rows);
@@ -23,7 +34,7 @@ router.get('/users', (_req, res, next) => {
 });
 
 
-router.get('/users/:id', (req, res, next) => {
+router.get('/users/:id', authorize, (req, res, next) => {
     const id = Number.parseInt(req.params.id);
 
     if (Number.isNaN(id)) {
@@ -47,7 +58,7 @@ router.get('/users/:id', (req, res, next) => {
       });
   });
 
-  router.post('/users', (req, res, next) => {
+  router.post('/users', authorize, (req, res, next) => {
     bcrypt.hash(req.body.password, 12)
       .then((hashed_password) => {
         return knex('users').insert({
@@ -67,7 +78,7 @@ router.get('/users/:id', (req, res, next) => {
         });
       });
 
-    router.delete('/users/:id', (req, res, next) => {
+    router.delete('/users/:id', authorize, (req, res, next) => {
         const id = Number.parseInt(req.params.id);
 
         if(Number.isNaN(id)) {
@@ -92,20 +103,6 @@ router.get('/users/:id', (req, res, next) => {
           });
         });
 
-    // const { email, password } = req.body;
-    //
-    // const insertUser = { email, hashedPassword: password };
-    //
-    // knex('users')
-    //   .insert(decamelizeKeys(insertUser), '*')
-    //   .then((rows) => {
-    //     const user = camelizeKeys(rows[0]);
-    //
-    //     res.send(user);
-    //   })
-    //   .catch((err) => {
-    //     next(err);
-    //   });
 
 
 

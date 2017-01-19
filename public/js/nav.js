@@ -2,6 +2,7 @@
 
 window.QUERY_PARAMETERS = {};
 
+
   if (window.location.search) {
     window.location.search.substr(1).split('&').forEach((paramStr) => {
       const param = paramStr.split('=');
@@ -12,6 +13,14 @@ window.QUERY_PARAMETERS = {};
 
 $('.button-collapse').sideNav();
 
+// $.getJSON('/token')
+//   .done((loggedIn) => {
+//     if(!loggedIn) {
+//       window.location.href = '/login.html';
+//
+//     }
+// });
+
 $.getJSON('/token')
   .done((loggedIn) => {
 
@@ -20,8 +29,8 @@ $.getJSON('/token')
       const $logout = $('<a>').text('Log out');
       $('#login').append($logout);
 
-      const $logoutMobel = $('<a>').text('Log out');
-      $('#login2').append($logoutMobel);
+      const $logoutMobile = $('<a>').text('Log out');
+      $('#login2').append($logoutMobile);
 
 
 
@@ -43,7 +52,7 @@ $.getJSON('/token')
           });
       });
 
-      $logout2.click((event) => {
+      $logoutMobile.click((event) => {
         event.preventDefault();
 
         const options = {

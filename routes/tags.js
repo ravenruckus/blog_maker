@@ -8,6 +8,18 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 
 // eslint-disable-next-line new-cap
 
+const authorize = function(req, res, next) {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
+    if (err) {
+      return next(boom.create(401, 'Unauthorized'));
+    }
+
+    req.claim = payload;
+
+    next();
+  });
+};
+
 router.get('/tags', (_req, res, next) => {
   knex('tags')
     .orderBy('created_at', 'desc')
@@ -45,7 +57,7 @@ router.get('/tags/:id', (req, res, next) => {
     });
 });
 
-router.post('/tags', (req, res, next) => {
+router.post('/tags', authorize, (req, res, next) => {
   const { name, id } = req.body;
 
   const insertTag = { name, id};
@@ -62,7 +74,7 @@ router.post('/tags', (req, res, next) => {
     });
 });
 
-router.delete('/tags/:id', (req, res, next) => {
+router.delete('/tags/:id', authorize, (req, res, next) => {
   const id = Number.parseInt(req.params.id);
 
   if (Number.isNaN(id)) {
@@ -87,30 +99,6 @@ router.delete('/tags/:id', (req, res, next) => {
     });
 });
 
-// router.delete(`/tags/${delTags}`, (req, res, next) => {
-//   const id = Number.parseInt(req.params.id);
-//
-//   if (Number.isNaN(id)) {
-//     return next();
-//   }
-//
-//   knex('tags')
-//     .del('*')
-//     .whereIn('id', delTags)
-//     .then((tags) => {
-//       // const tag = tags[0];
-//
-//       if (!tags) {
-//         return next();
-//       }
-//       // delete tag.id;
-//       res.send(camelizeKeys(tags));
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       next(err);
-//     });
-// });
 
 
 module.exports = router;
