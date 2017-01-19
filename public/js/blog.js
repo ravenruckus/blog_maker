@@ -63,4 +63,38 @@
     })
 
 
+// ****put tags on blog page
+
+    $.getJSON('/tags')
+      .done((tags) => {
+        console.log(tags);
+        const $blogTags = $('#blogTags');
+
+        for (const tag of tags) {
+
+          const $anchor = $('<a>')
+            .attr({
+              href: `posts_tags.html?id=${tag.id}`,
+              'data-delay': '50',
+            })
+
+            const $li = $('<li>').attr('id', tag.id).text(tag.name);
+            $anchor.append($li);
+            $blogTags.append($anchor);
+       }
+    })
+    .then((data) =>{
+      // console.log(data);
+      $.getJSON('/posts')
+        .done((posts) => {
+          // console.log(posts);
+        })
+
+    })
+    .fail(() => {
+      Materialize.toast('Unable to retrieve tags', 3000);
+    });
+
+
+
 })();

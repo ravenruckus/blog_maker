@@ -36,12 +36,14 @@ const users = require('./routes/users')
 const posts = require('./routes/posts');
 const tags = require('./routes/tags');
 const post_tags = require('./routes/post_tags');
+const posts_by_tag = require('./routes/posts_by_tag');
 
 app.use(token);
 app.use(users);
 app.use(posts);
 app.use(tags);
 app.use(post_tags);
+app.use(posts_by_tag);
 
 app.use((_req, res) => {
   res.sendStatus(404);

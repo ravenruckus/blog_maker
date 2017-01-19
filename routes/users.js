@@ -21,7 +21,8 @@ const authorize = function(req, res, next) {
   });
 };
 
-router.get('/users',  (_req, res, next) => {
+
+router.get('/users', (_req, res, next) => {
   knex('users')
     .then((rows) => {
       const users = camelizeKeys(rows);
@@ -58,7 +59,7 @@ router.get('/users/:id', authorize, (req, res, next) => {
       });
   });
 
-  router.post('/users', authorize, (req, res, next) => {
+  router.post('/users', (req, res, next) => {
     bcrypt.hash(req.body.password, 12)
       .then((hashed_password) => {
         return knex('users').insert({
