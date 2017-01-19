@@ -17,7 +17,6 @@
     $.getJSON(`/posts/${postId}`)
       .done((post) => {
         renderPost(post);
-        console.log(post.title);
         const $post = $('#blog_post');
         const $col = $('<div>').addClass('col s12 ind_post');
         const $title = $('<h2>').text(post.title);
@@ -28,6 +27,10 @@
         $col.append($img);
         $col.append($p);
         $post.append($col);
+      })
+      .then((data) => {
+        const blogId = data.id;
+        // console.log(data.id);
       })
       .fail(() => {
         Materialize.toast('Unable to retrieve post', 3000);
