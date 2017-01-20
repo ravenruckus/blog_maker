@@ -4,33 +4,57 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #000;
   font-family: 'Titillium Web', sans-serif;
+  background-color: rgba(232, 133, 207, 0.05);
 }
 
 main {
   flex: 1 0 auto;
 }
 
-main .parallax-container {
+header {
+  background-image: url("../images/cupcakes4.png");
+  background-size: cover;
+  flex-direction: column;
+  height: 375px;
+  /*border-bottom: 5px solid #59013D;*/
+  margin-bottom: 35px;
+}
+
+
+/*main .parallax-container {
   height: 350px;
 }
 
 .parallax-window {
     min-height: 400px;
     background: transparent;
+}*/
+nav {
+  background-color: rgba(232, 133, 207, 0.15);
+  background-color: #BADE00;
+  /*border-bottom: 3px solid #BADE00;*/
 }
 
 nav .brand-logo {
   font-size: 2rem;
   font-family: 'Raleway', sans-serif;
+  /*color: #BADE00;*/
+  /*color: #59013D;*/
+  color: #fff;
   margin-left: 1%;
   padding-left: 75px;
-  background-image: url("../images/blog_logo.svg");
+  background-image: url("../images/cupcake4.svg");
   background-repeat: no-repeat;
-  background-position: 3% 3px;
-  background-size: 60px 60px;
+  background-position: 3% 5px;
+  background-size: 50px 50px;
 }
+
+nav ul a {
+  /*color: #59013D;*/
+  color: #F01B69;
+}
+
 
 .parallax img {
   max-width: 50%;
@@ -44,9 +68,45 @@ nav .brand-logo {
   color: #000;
 }
 
-footer.page-footer .footer-copyright {
+
+.content {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.front-end  h2 {
+  color: #59013D;
+  color: #F01B69;
+  text-align: center;
+}
+
+.front-end  h4 {
+  color: #59013D;
+  color: #F01B69;
+
+}
+
+.front-end .tags {
+  border-radius: 4px;
+
+}
+.front-end .tags li {
+  color: #333;
+  font-size: 1.3rem;
+
+}
+
+.front-end footer {
+  background-color: #F01B69;
+}
+
+ .front-end footer.page-footer .footer-copyright {
+  background-color: #F01B69;
   margin-left: 2%;
 }
+
+
+
 
 .ind_post img {
   width: 40%;
