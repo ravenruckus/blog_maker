@@ -105,6 +105,10 @@ nav ul a {
   margin-left: 2%;
 }
 
+.front-end .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+  color: #F01B69;
+
+}
 
 
 

@@ -51,7 +51,7 @@
             $card.append($anchor2);
             $cardContent.append($p);
             $card.append($cardContent);
-            $cardAction.append($anchor.text(`${post.title} - ${shortDate}`));
+            $cardAction.append($anchor.text(`${post.title} * ${shortDate}`));
             $card.append($cardAction);
             $col.append($card);
             $posts.append($col);
