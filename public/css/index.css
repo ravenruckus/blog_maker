@@ -139,3 +139,39 @@ nav ul a {
   width: 70%;
   margin-left: 15%;
 }
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+ color:   #F01B69;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+ border-bottom: 1px solid #F01B69;
+ box-shadow: 0 1px 0 0 #F01B69;
+}
+/* valid color */
+.input-field input[type=text].valid {
+ border-bottom: 1px solid #F01B69;
+ box-shadow: 0 1px 0 0 #F01B69;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+ border-bottom: 1px solid #F01B69;
+ box-shadow: 0 1px 0 0 #F01B69;
+}
+
+[type="checkbox"]:checked+label:before {
+border-right: 2px solid #F01B69;
+border-bottom: 2px solid #F01B69;;
+}
+
+
+.secondary-content {
+  color: #F01B69;
+}
+
+
+/*textarea.materialize-textarea:focus:not([readonly]) {
+  boder-bottom: 1px solid #F01B69;
+  box-shadow: 0 1px 00 #F01B69;
+}*/
