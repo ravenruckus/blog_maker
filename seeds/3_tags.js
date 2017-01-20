@@ -18,12 +18,7 @@ exports.seed = function(knex) {
     name: 'Macaroons',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
-  }, {
-    id: 4,
-    name: 'Luxury Cookies',
-    created_at: new Date('2016-01-12 14:26:16 UTC'),
-    updated_at: new Date('2016-01-12 14:26:16 UTC')
-  }, {
+  },  {
     id: 5,
     name: 'Sprinkles!',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
@@ -41,30 +36,20 @@ exports.seed = function(knex) {
   },
   {
     id: 8,
-    name: 'Mousse',
+    name: 'Chocolate Mousse Pie',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
   },{
     id: 9,
-    name: 'Strawbe',
+    name: 'Cake Pops',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
   },{
     id: 10,
-    name: 'Peppermint',
+    name: 'Pie',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
-  },{
-    id: 11,
-    name: 'Cookies',
-    created_at: new Date('2016-01-12 14:26:16 UTC'),
-    updated_at: new Date('2016-01-12 14:26:16 UTC')
-  },{
-    id: 12,
-    name: 'Fudge',
-    created_at: new Date('2016-01-12 14:26:16 UTC'),
-    updated_at: new Date('2016-01-12 14:26:16 UTC')
-  },])
+  }])
   })
     .then(function(){
      return knex.raw("SELECT setval('tags_id_seq', (SELECT MAX(id) FROM tags));");

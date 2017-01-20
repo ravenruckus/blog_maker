@@ -27,18 +27,19 @@ $.getJSON(`/posts_tags/${id}`)
     const $posts = $('#posts');
 
     for (const post of posts) {
-
+console.log(post.id);
+console.log(post['postId']);
       const shortDate = post.createdAt.substring(0,10);
-
+      const thePostId = post['postId'];
       const $anchor = $('<a>')
         .attr({
-          href: `/blog_post.html?id=${post.id}`,
+          href: `/blog_post.html?id=${thePostId}`,
           'data-delay': '50',
           'data-tooltip': post.title
         })
       const $anchor2 = $('<a>')
         .attr({
-          href: `/blog_post.html?id=${post.id}`,
+          href: `/blog_post.html?id=${thePostId}`,
           'data-delay': '50',
           'data-tooltip': post.title
         })
