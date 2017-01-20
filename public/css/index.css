@@ -5,7 +5,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Titillium Web', sans-serif;
-  background-color: rgba(232, 133, 207, 0.05);
+  background-color: rgba(232, 133, 207, 0.10);
 }
 
 main {
@@ -31,17 +31,17 @@ header {
     background: transparent;
 }*/
 nav {
-  background-color: rgba(232, 133, 207, 0.15);
-  background-color: #BADE00;
+  background-color: rgba(232, 133, 207, 0.10);
+  /*background-color: #BADE00;*/
   /*border-bottom: 3px solid #BADE00;*/
 }
 
 nav .brand-logo {
   font-size: 2rem;
   font-family: 'Raleway', sans-serif;
-  /*color: #BADE00;*/
+  color: #BADE00;
   /*color: #59013D;*/
-  color: #fff;
+  /*color: #fff;*/
   margin-left: 1%;
   padding-left: 75px;
   background-image: url("../images/cupcake4.svg");
@@ -129,4 +129,9 @@ nav ul a {
 
 .tags{
   font-size: 1.3rem;
+}
+
+.admin_panel {
+  width: 70%;
+  margin-left: 15%;
 }
