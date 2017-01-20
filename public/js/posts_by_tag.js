@@ -1,6 +1,9 @@
 (function() {
     'use strict';
 
+    // window.QUERY_PARAMETERS = {};
+
+
     const id = window.QUERY_PARAMETERS.id;
     if (!id) {
       window.location.href = '/blog.html';
