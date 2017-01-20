@@ -36,7 +36,7 @@ exports.seed = function(knex) {
   },
   {
     id: 8,
-    name: 'Chocolate Mousse Pie',
+    name: 'Mousse Pie',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
   },{
@@ -47,6 +47,11 @@ exports.seed = function(knex) {
   },{
     id: 10,
     name: 'Pie',
+    created_at: new Date('2016-01-12 14:26:16 UTC'),
+    updated_at: new Date('2016-01-12 14:26:16 UTC')
+  },{
+    id: 11,
+    name: 'French',
     created_at: new Date('2016-01-12 14:26:16 UTC'),
     updated_at: new Date('2016-01-12 14:26:16 UTC')
   }])

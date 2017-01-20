@@ -51,6 +51,23 @@ exports.seed = function(knex) {
     title: 'Nutty Creamy Fruit Pies',
     created_at: new Date('2016-07-09 14:26:16 UTC'),
     updated_at: new Date('2016-09-07 14:26:16 UTC')
+  }, {
+    id: 7,
+    user_id: 1,
+    content: 'Danish I love candy ice cream I love sesame snaps bear claw. I love cake lollipop. Apple pie candy canes brownie candy. Carrot cake gingerbread cookie biscuit. Pastry jelly-o marzipan cheesecake candy canes topping caramels. Jelly-o dessert cotton candy apple pie jelly beans cheesecake fruitcake tiramisu. I love tiramisu I love jujubes. I love tart marshmallow cookie macaroon toffee lemon drops. Biscuit jelly ice cream ice cream carrot cake biscuit. I love pie powder candy canes dessert croissant. Topping lemon drops I love gummies liquorice donut chocolate I love caramels. Pie brownie lollipop cotton candy cupcake tiramisu bonbon topping apple pie.',
+    img: 'https://static.pexels.com/photos/4279/coffee-morning-breakfast-croissant.jpg',
+    title: 'French Breakfast: Oooh La La!',
+    created_at: new Date('2016-07-09 14:26:16 UTC'),
+    updated_at: new Date('2016-09-07 14:26:16 UTC')
+  },
+  {
+    id: 8,
+    user_id: 1,
+    content: 'Delishish Strawberry pie oh my gawd so tasty! Danish I love candy ice cream I love sesame snaps bear claw. I love cake lollipop. Apple pie candy canes brownie candy. Carrot cake gingerbread cookie biscuit. Pastry jelly-o marzipan cheesecake candy canes topping caramels. Jelly-o dessert cotton candy apple pie jelly beans cheesecake fruitcake tiramisu. I love tiramisu I love jujubes. I love tart marshmallow cookie macaroon toffee lemon drops. Biscuit jelly ice cream ice cream carrot cake biscuit. I love pie powder candy canes dessert croissant. Topping lemon drops I love gummies liquorice donut chocolate I love caramels. Pie brownie lollipop cotton candy cupcake tiramisu bonbon topping apple pie.',
+    img: 'http://cf.thelittleepicurean.com/wp-content/uploads/2013/05/IMG_9027-1024x682.jpg',
+    title: 'Summertime Pie',
+    created_at: new Date('2016-07-09 14:26:16 UTC'),
+    updated_at: new Date('2016-09-07 14:26:16 UTC')
   }])
   })
     .then(function(){

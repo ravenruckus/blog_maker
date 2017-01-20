@@ -75,11 +75,72 @@ exports.seed = function(knex) {
   },
   {
   id: 17,
+  post_id: 7,
+  tag_id: 11,
+  created_at: new Date('2016-06-06 14:26:16 UTC'),
+  updated_at: new Date('2016-07-07 14:26:16 UTC')
+  },
+  {
+  id: 18,
+  post_id: 3,
+  tag_id: 11,
+  created_at: new Date('2016-06-06 14:26:16 UTC'),
+  updated_at: new Date('2016-07-07 14:26:16 UTC')
+  },
+  {
+  id: 19,
   post_id: 5,
   tag_id: 9,
   created_at: new Date('2016-06-06 14:26:16 UTC'),
   updated_at: new Date('2016-07-07 14:26:16 UTC')
-  }
+  },
+  {
+  id: 20,
+  post_id: 8,
+  tag_id: 10,
+  created_at: new Date('2016-06-06 14:26:16 UTC'),
+  updated_at: new Date('2016-07-07 14:26:16 UTC')
+  },
+   {
+  id: 22,
+  post_id: 8,
+  tag_id: 1,
+  created_at: new Date('2016-06-06 14:26:16 UTC'),
+  updated_at: new Date('2016-07-07 14:26:16 UTC')
+  }, {
+  id: 23,
+  post_id: 8,
+  tag_id: 8,
+  created_at: new Date('2016-06-06 14:26:16 UTC'),
+  updated_at: new Date('2016-07-07 14:26:16 UTC')
+  },
+  {
+  id: 25,
+  post_id: 7,
+  tag_id: 2,
+  created_at: new Date('2016-06-06 14:26:16 UTC'),
+  updated_at: new Date('2016-07-07 14:26:16 UTC')
+  },
+  {
+  id: 26,
+  post_id: 5,
+  tag_id: 6,
+  created_at: new Date('2016-06-06 14:26:16 UTC'),
+  updated_at: new Date('2016-07-07 14:26:16 UTC')
+  },
+  {
+  id: 27,
+  post_id: 5,
+  tag_id: 5,
+  created_at: new Date('2016-06-06 14:26:16 UTC'),
+  updated_at: new Date('2016-07-07 14:26:16 UTC')
+  }, {
+    id: 28,
+    post_id: 2,
+    tag_id: 7,
+    created_at: new Date('2016-06-06 14:26:16 UTC'),
+    updated_at: new Date('2016-07-07 14:26:16 UTC')
+}
   ])
 })
     .then(function(){
