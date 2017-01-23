@@ -8,3 +8,5 @@ window.QUERY_PARAMETERS = {};
       window.QUERY_PARAMETERS[param[0]] = param[1];
     });
   }
+
+$('.button-collapse').sideNav();

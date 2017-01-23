@@ -17,31 +17,46 @@ header {
   background-size: cover;
   flex-direction: column;
   height: 375px;
-  /*border-bottom: 5px solid #59013D;*/
   margin-bottom: 35px;
 }
-
-
-/*main .parallax-container {
-  height: 350px;
+.home_header {
+  margin-bottom: 0;
 }
 
-.parallax-window {
-    min-height: 400px;
-    background: transparent;
-}*/
+@media only screen and (max-width: 960px) {
+  header {
+    height: 300px;
+}
+}
+
+@media only screen and (max-width: 760px) {
+  header {
+    height: 250px;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  header {
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+   header {
+     height: 400px;
+     background-image: url('../images/mobile_cupcakes_strawberries.png');
+   }
+}
+
+
 nav {
   background-color: rgba(232, 133, 207, 0.10);
-  /*background-color: #BADE00;*/
-  /*border-bottom: 3px solid #BADE00;*/
 }
 
 nav .brand-logo {
   font-size: 2rem;
   font-family: 'Raleway', sans-serif;
   color: #BADE00;
-  /*color: #59013D;*/
-  /*color: #fff;*/
   margin-left: 1%;
   padding-left: 75px;
   background-image: url("../images/cupcake4.svg");
@@ -51,13 +66,16 @@ nav .brand-logo {
 }
 
 nav ul a {
-  /*color: #59013D;*/
   color: #F01B69;
 }
 
 
-.parallax img {
-  max-width: 50%;
+
+@media only screen and (max-width: 600px) {
+  .home_intro h2 {
+    font-size: 2.7rem;
+  }
+
 }
 
 .collectionCol {
@@ -110,14 +128,22 @@ nav ul a {
 
 }
 
-
-
 .ind_post img {
   width: 40%;
   margin-left: 30%;
 }
 .ind_post h2 {
   text-align: center;
+}
+@media only screen and (max-width: 900px) {
+  .ind_post img {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  .ind_post h2 {
+    font-size: 3rem;
+  }
 }
 
 .deleteIcon:hover {
@@ -162,11 +188,19 @@ nav ul a {
 
 [type="checkbox"]:checked+label:before {
 border-right: 2px solid #F01B69;
-border-bottom: 2px solid #F01B69;;
+border-bottom: 2px solid #F01B69;
 }
 
 
 .secondary-content {
+  color: #F01B69;
+}
+
+.front-end nav i.material-icons {
+  color: #000;
+}
+
+a {
   color: #F01B69;
 }
 

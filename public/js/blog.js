@@ -1,7 +1,6 @@
 (function() {
     'use strict';
 
-
     $('.parallax').parallax();
     const truncateString = function(str, num) {
       if(num > str.length) {
@@ -17,6 +16,7 @@
 
     $.getJSON('/posts')
       .done((posts) => {
+        console.log(posts);
 
         const $posts = $('#posts');
 
@@ -85,10 +85,8 @@
        }
     })
     .then((data) =>{
-      // console.log(data);
       $.getJSON('/posts')
         .done((posts) => {
-          // console.log(posts);
         })
 
     })
