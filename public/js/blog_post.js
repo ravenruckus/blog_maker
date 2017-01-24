@@ -1,30 +1,21 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    // window.QUERY_PARAMETERS = {};
-    //
-    // if (window.location.search) {
-    //   window.location.search.substr(1).split('&').forEach((paramStr) => {
-    //     const param = paramStr.split('=');
-    //
-    //     window.QUERY_PARAMETERS[param[0]] = param[1];
-    //   });
-    // }
+  const postId = window.QUERY_PARAMETERS.id;
 
-    const postId = window.QUERY_PARAMETERS.id;
-    if (!postId) {
-      window.location.href = '/blog.html';
+  if (!postId) {
+    window.location.href = '/blog.html';
+  }
+
+  const renderPost = function(post) {
+    $('#title').val(post.title);
+    $('#img').val(post.img);
+    $('#content').val(post.content);
+
+    Materialize.updateTextFields();
     }
 
-    const renderPost = function(post) {
-      $('#title').val(post.title);
-      $('#img').val(post.img);
-      $('#content').val(post.content);
-
-      Materialize.updateTextFields();
-    }
-
-    $.getJSON(`/posts/${postId}`)
+  $.getJSON(`/posts/${postId}`)
       .done((post) => {
         renderPost(post);
         const $post = $('#blog_post');
@@ -38,12 +29,7 @@
         $col.append($p);
         $post.append($col);
       })
-      .then((data) => {
-        const blogId = data.id;
-        // console.log(data.id);
-      })
       .fail(() => {
         Materialize.toast('Unable to retrieve post', 3000);
       });
-
 })();

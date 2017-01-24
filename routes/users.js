@@ -21,7 +21,6 @@ const authorize = function(req, res, next) {
   });
 };
 
-
 router.get('/users', (_req, res, next) => {
   knex('users')
     .then((rows) => {
@@ -34,15 +33,14 @@ router.get('/users', (_req, res, next) => {
     });
 });
 
-
 router.get('/users/:id', authorize, (req, res, next) => {
-    const id = Number.parseInt(req.params.id);
+  const id = Number.parseInt(req.params.id);
 
-    if (Number.isNaN(id)) {
-      return next(0);
-    }
+  if (Number.isNaN(id)) {
+    return next(0);
+  }
 
-    knex('users')
+  knex('users')
       .where('id', id)
       .first()
       .then((row) => {
@@ -57,9 +55,9 @@ router.get('/users/:id', authorize, (req, res, next) => {
       .catch((err) => {
         next(err);
       });
-  });
+});
 
-  router.post('/users', (req, res, next) => {
+router.post('/users', (req, res, next) => {
     bcrypt.hash(req.body.password, 12)
       .then((hashed_password) => {
         return knex('users').insert({
@@ -99,65 +97,8 @@ router.get('/users/:id', authorize, (req, res, next) => {
             res.send(camelizeKeys(user));
           })
           .catch((err) => {
-            console.log(err);
             next(err);
           });
-        });
-
-
-
-
-
-// router.post('/users', (req, res, next) => {
-//   const { email, password } = req.body;
-//
-//   if (!email || !email.trim()) {
-//     return next(boom.create(400, 'Email must not be blank'));
-//   }
-//
-//   if (!password || password.length < 8) {
-//     return next(boom.create(
-//       400,
-//       'Password must be at least 8 characters long'
-//     ));
-//   }
-//
-//   knex('users')
-//     .where('email', email)
-//     .first()
-//     .then((user) => {
-//       if (user) {
-//         throw boom.create(400, 'Email already exists');
-//       }
-//
-//       return bcrypt.hash(password, 12);
-//     })
-//     .then((hashedPassword) => {
-//       const { firstName, lastName } = req.body;
-//       const insertUser = { email, hashedPassword };
-//
-//       return knex('users').insert(decamelizeKeys(insertUser), '*');
-//     })
-//     .then((rows) => {
-//       const user = camelizeKeys(rows[0]);
-//       const claim = { userId: user.id };
-//       const token = jwt.sign(claim, process.env.JWT_KEY, {
-//         expiresIn: '30 days'
-//       });
-//
-//       res.cookie('token', token, {
-//         httpOnly: true,
-//         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
-//         secure: router.get('env') === 'production'
-//       });
-//
-//       delete user.hashedPassword;
-//
-//       res.send(user);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-//});
+    });
 
 module.exports = router;

@@ -6,7 +6,6 @@ const knex = require('../knex');
 const jwt = require('jsonwebtoken');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 
-
 // eslint-disable-next-line new-cap
 const authorize = function(req, res, next) {
   jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
@@ -63,7 +62,7 @@ router.post('/posts', authorize, (req, res, next) => {
 
   let tagIdsArr;
   let post;
-  
+
   const { title, userId, content, img, tagIds } = req.body;
 
   tagIdsArr = req.body.tagIds;

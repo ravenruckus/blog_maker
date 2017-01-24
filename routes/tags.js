@@ -3,9 +3,8 @@ const boom = require('boom');
 const express = require('express');
 const router = express.Router();
 const knex = require('../knex');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 const { camelizeKeys, decamelizeKeys } = require('humps');
-
 
 // eslint-disable-next-line new-cap
 
@@ -61,7 +60,7 @@ router.get('/tags/:id', (req, res, next) => {
 router.post('/tags', authorize, (req, res, next) => {
   const { name, id } = req.body;
 
-  const insertTag = { name, id};
+  const insertTag = { name, id };
 
   knex('tags')
     .insert(decamelizeKeys(insertTag), '*')
@@ -95,11 +94,8 @@ router.delete('/tags/:id', authorize, (req, res, next) => {
       res.send(camelizeKeys(tag));
     })
     .catch((err) => {
-      console.log(err);
       next(err);
     });
 });
-
-
 
 module.exports = router;

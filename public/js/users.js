@@ -7,11 +7,11 @@
     const email = $('#email').val().trim();
     const password = $('#password').val().trim();
 
-    if(!email) {
+    if (!email) {
       return Materialize.toast('Please provide an email', 3000);
     }
 
-    if(!password) {
+    if (!password) {
       return Materialize.toast('Password must be >8 characters', 3000);
     }
 
@@ -20,10 +20,10 @@
       data: JSON.stringify({
         email: email,
         password: password
-          }),
-        dataType: 'json',
-        type: 'POST',
-        url: 'users'
+      }),
+      dataType: 'json',
+      type: 'POST',
+      url: 'users'
     };
 
     $.ajax(options)
@@ -34,7 +34,6 @@
         Materialize.toast($xhr.responseText, 3000)
       });
   });
-
 
   $.getJSON('/users')
     .done((users) => {
@@ -62,13 +61,12 @@
 
           $.ajax(options)
             .done(() => {
-              window.location.href = '/users.html'
+              window.location.href = '/users.html';
             })
             .fail(() => {
               Materialize.toast('Unable to delete, user', 3000);
-            })
+            });
         });
-
       }
     })
     .fail(() => {

@@ -1,150 +1,80 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    // const attachListener = function(tag) {
-    //   $('#tagsForm').submit((event) => {
-    //     event.preventDefault();
-    //
-    //     const options = {
-    //       dataType: 'json',
-    //       type: 'DELETE',
-    //       url: `/tags/${tag.id}`
-    //     };
-    //
-    //     $.ajax(options)
-    //       .done(() => {
-    //         window.location.href = '/tags.html';
-    //       })
-    //       .fail(() => {
-    //         Materialize.toast('Unable to delete', 3000);
-    //       });
-    //     });
-    // };
-    // const attachListener = function(tag) {
-    //   $('#deleteTag').click((event) => {
-    //     event.preventDefault();
-    //
-    //     const options = {
-    //       dataType: 'json',
-    //       type: 'DELETE',
-    //       url: `/tags/${tags.id}`
-    //     };
-    //
-    //     $.ajax(options)
-    //       .done(() => {
-    //         window.location.href = '/tags.html';
-    //       })
-    //       .fail(() => {
-    //         Materialize.toast('Unable to delete', 3000);
-    //       });
-    //     });
-    // };
+  $('#newTag').submit((event) => {
+    event.preventDefault();
 
-      // $('#new_tag').submit((event) => {
-      //   event.preventDefault();
-      //   const newTag = $('#tag_name').val().trim();
-      //
-      //   if(!newTag) {
-      //     return Materialize.toast('You must enter a new tag name', 3000);
-      //   }
-      //
-      //   const options = {
-      //     contentType: 'application/json',
-      //     data: JSON.stringify({ newTag }),
-      //     dataType: 'json',
-      //     type: 'POST',
-      //     url: 'tags'
-      //   };
-      //
-      //   $.ajax(options)
-      //     .done(() => {
-      //       window.location.href = '/tags.html';
-      //     })
-      //     .fail(($xhr) => {
-      //       Materialize.toast($xhr.responseText, 3000)
-      //     });
-      // });
+    const tagName = $('#tagName').val().trim();
 
-      $('#newTag').submit((event) => {
-        event.preventDefault();
+    if (!tagName) {
+      return Materialize.toast('A tag name must be entered', 3000);
+    }
 
-        const tagName = $('#tagName').val().trim();
+    const options = {
+      contentType: 'application/json',
+      data: JSON.stringify({ name: tagName }),
+      dataType: 'json',
+      type: 'POST',
+      url: 'tags'
+    };
 
-        if(!tagName) {
-          return Materialize.toast('A tag name must be entered', 3000);
-        }
-
-        const options = {
-          contentType: 'application/json',
-          data: JSON.stringify({ name: tagName }),
-          dataType: 'json',
-          type: 'POST',
-          url: 'tags'
-        };
-
-        $.ajax(options)
+    $.ajax(options)
           .done(() => {
             window.location.href = '/tags.html';
           })
           .fail(($xhr) => {
             Materialize.toast($xhr.responseText, 3000)
           });
-        });
+  });
 
-    $.getJSON('/tags')
+  $.getJSON('/tags')
       .done((tags) => {
-
         const $tagsForm = $('#tagsForm');
 
         for (const tag of tags) {
-            const $p = $('<p>').addClass('left-align');
-            const $input = $('<input type="checkbox">').attr('id', tag.id);
-            const $label = $('<label>').attr('for', tag.id).text(tag.name);
+          const $p = $('<p>').addClass('left-align');
+          const $input = $('<input type="checkbox">').attr('id', tag.id);
+          const $label = $('<label>').attr('for', tag.id).text(tag.name);
 
-            $p.prepend($label);
-            $p.prepend($input);
-            $tagsForm.prepend($p);
-
-       }
-
-    })
+          $p.prepend($label);
+          $p.prepend($input);
+          $tagsForm.prepend($p);
+        }
+      })
     .fail(() => {
       Materialize.toast('Unable to retrieve tags', 3000);
     });
 
+  const delTags = [];
 
-    const delTags = [];
-    $('#tagsForm').on('click', 'input', (event) => {
+  $('#tagsForm').on('click', 'input', (event) => {
 
-      const ind = delTags.indexOf(event.target.id);
-      if ( ind === -1 ) {
-        delTags.push(event.target.id);
-      }
-      else {
-        delTags.splice(ind,1);
-      }
+    const ind = delTags.indexOf(event.target.id);
 
-      });
+    if (ind === -1) {
+      delTags.push(event.target.id);
+    }
+    else {
+      delTags.splice(ind, 1);
+    }
+  });
 
-    $('#deleteTag').click((event) => {
+  $('#deleteTag').click((event) => {
 
-      for (const tag of delTags) {
-        const options = {
-          dataType: 'json',
-          type: 'DELETE',
-          url: `/tags/${tag}`
-        };
+    for (const tag of delTags) {
+      const options = {
+        dataType: 'json',
+        type: 'DELETE',
+        url: `/tags/${tag}`
+      };
 
-        $.ajax(options)
+      $.ajax(options)
           .done(() => {
             window.location.href = '/tags.html';
           })
 
           .fail(() => {
             Materialize.toast('Unable to delete', 3000);          })
-      }
-
-
-    });
-
+    }
+  });
 })();

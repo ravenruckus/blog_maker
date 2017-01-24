@@ -1,48 +1,46 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    $('.modal').modal();
-    const postId = window.QUERY_PARAMETERS.id;
+  $('.modal').modal();
+  const postId = window.QUERY_PARAMETERS.id;
 
-    if (!postId) {
-      window.location.href = '/all_posts.html';
-    }
+  if (!postId) {
+    window.location.href = '/all_posts.html';
+  }
 
-    const renderPost = function(post) {
-      $('#title').val(post.title);
-      $('#img').val(post.img);
-      $('#content').val(post.content);
+  const renderPost = function(post) {
+    $('#title').val(post.title);
+    $('#img').val(post.img);
+    $('#content').val(post.content);
 
-      Materialize.updateTextFields();
-    };
+    Materialize.updateTextFields();
+  };
 
-    const attachListeners = function(post) {
-      $('#deletePost').click((event) => {
-        event.preventDefault();
+  const attachListeners = function(post) {
+    $('#deletePost').click((event) => {
+      event.preventDefault();
+    });
 
-      });
+    $('#confirmDelete').click((event) => {
+      event.preventDefault();
 
-      $('#confirmDelete').click((event) => {
-        event.preventDefault();
+      const options = {
+        dataType: 'json',
+        type: 'DELETE',
+        url: `/posts/${post.id}`
+      };
 
-        const options = {
-          dataType: 'json',
-          type: 'DELETE',
-          url: `/posts/${post.id}`
-        };
-
-        $.ajax(options)
+      $.ajax(options)
           .done(() => {
             window.location.href = '/all_posts.html';
           })
           .fail(() => {
             Materialize.toast('Unable to delete post', 3000);
           });
-      });
+    });
+  };
 
-    };
-
-    $.getJSON(`/posts/${postId}`)
+  $.getJSON(`/posts/${postId}`)
       .done((post) => {
         renderPost(post);
         attachListeners(post);
@@ -61,9 +59,8 @@
         Materialize.toast('Unable to retrieve post', 3000);
       });
 
-      $('#editPost').click((event) => {
-        event.preventDefault();
-        window.location.href = `edit_post.html?id=${postId}`;
-      })
-
+  $('#editPost').click((event) => {
+    event.preventDefault();
+    window.location.href = `edit_post.html?id=${postId}`;
+  })
 })();
