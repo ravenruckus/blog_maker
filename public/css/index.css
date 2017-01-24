@@ -69,7 +69,23 @@ nav ul a {
   color: #F01B69;
 }
 
+.back_footer {
+  margin-left: 45%;
+  font-size: 1.7rem;
+}
 
+@media only screen and (max-width: 1100px) {
+  .back_footer {
+    margin-left: 0;
+    font-size: 1.3rem;
+}
+}
+
+@media only screen and (max-width: 500px) {
+  .back_footer {
+    font-size: 1rem;
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .home_intro h2 {
@@ -202,6 +218,10 @@ border-bottom: 2px solid #F01B69;
 
 a {
   color: #F01B69;
+}
+
+.login_nav {
+  margin-bottom: 25px;
 }
 
 
