@@ -3,8 +3,8 @@
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   font-family: 'Titillium Web', sans-serif;
+  min-height: 100vh;
   background-color: rgba(232, 133, 207, 0.10);
 }
 
@@ -19,6 +19,7 @@ header {
   height: 375px;
   margin-bottom: 35px;
 }
+
 .home_header {
   margin-bottom: 0;
 }
@@ -26,7 +27,7 @@ header {
 @media only screen and (max-width: 960px) {
   header {
     height: 300px;
-}
+ }
 }
 
 @media only screen and (max-width: 760px) {
@@ -48,7 +49,6 @@ header {
    }
 }
 
-
 nav {
   background-color: rgba(232, 133, 207, 0.10);
 }
@@ -56,13 +56,13 @@ nav {
 nav .brand-logo {
   font-size: 2rem;
   font-family: 'Raleway', sans-serif;
-  color: #BADE00;
-  margin-left: 1%;
-  padding-left: 75px;
   background-image: url("../images/cupcake4.svg");
   background-repeat: no-repeat;
   background-position: 3% 5px;
   background-size: 50px 50px;
+  color: #BADE00;
+  margin-left: 1%;
+  padding-left: 75px;
 }
 
 nav ul a {
@@ -70,15 +70,15 @@ nav ul a {
 }
 
 .back_footer {
-  margin-left: 45%;
   font-size: 1.7rem;
+  margin-left: 45%;
 }
 
 @media only screen and (max-width: 1100px) {
   .back_footer {
-    margin-left: 0;
     font-size: 1.3rem;
-}
+    margin-left: 0;
+ }
 }
 
 @media only screen and (max-width: 500px) {
@@ -91,7 +91,6 @@ nav ul a {
   .home_intro h2 {
     font-size: 2.7rem;
   }
-
 }
 
 .collectionCol {
@@ -102,10 +101,9 @@ nav ul a {
   color: #000;
 }
 
-
 .content {
-  width: 90%;
   margin-left: 5%;
+  width: 90%;
 }
 
 .front-end  h2 {
@@ -117,40 +115,39 @@ nav ul a {
 .front-end  h4 {
   color: #59013D;
   color: #F01B69;
-
 }
 
 .front-end .tags {
   border-radius: 4px;
-
 }
+
 .front-end .tags li {
   color: #333;
   font-size: 1.3rem;
-
 }
 
 .front-end footer {
   background-color: #F01B69;
 }
 
- .front-end footer.page-footer .footer-copyright {
+.front-end footer.page-footer .footer-copyright {
   background-color: #F01B69;
   margin-left: 2%;
 }
 
 .front-end .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
   color: #F01B69;
-
 }
 
 .ind_post img {
-  width: 40%;
   margin-left: 30%;
+  width: 40%;
 }
+
 .ind_post h2 {
   text-align: center;
 }
+
 @media only screen and (max-width: 900px) {
   .ind_post img {
     width: 80%;
@@ -167,10 +164,8 @@ nav ul a {
   font-size: 2em;
 }
 
-
 .highlight {
   color: rgb(240, 36, 8);
-
 }
 
 .tags{
@@ -178,8 +173,8 @@ nav ul a {
 }
 
 .admin_panel {
-  width: 70%;
   margin-left: 15%;
+  width: 70%;
 }
 
 /* label focus color */
@@ -201,12 +196,10 @@ nav ul a {
  border-bottom: 1px solid #F01B69;
  box-shadow: 0 1px 0 0 #F01B69;
 }
-
 [type="checkbox"]:checked+label:before {
 border-right: 2px solid #F01B69;
 border-bottom: 2px solid #F01B69;
 }
-
 
 .secondary-content {
   color: #F01B69;
@@ -223,9 +216,3 @@ a {
 .login_nav {
   margin-bottom: 25px;
 }
-
-
-/*textarea.materialize-textarea:focus:not([readonly]) {
-  boder-bottom: 1px solid #F01B69;
-  box-shadow: 0 1px 00 #F01B69;
-}*/
