@@ -52,6 +52,18 @@ header {
 nav {
   background-color: rgba(232, 133, 207, 0.10);
 }
+.front-end nav i.material-icons {
+  color: #000;
+}
+
+@media only screen and (max-width: 500px) {
+  nav {
+    background-color: #333;
+  }
+  .front-end nav i.material-icons {
+    color: #fff;
+  }
+}
 
 nav .brand-logo {
   font-size: 2rem;
@@ -69,6 +81,11 @@ nav ul a {
   color: #F01B69;
 }
 
+.login_nav {
+  margin-bottom: 25px;
+}
+
+
 .back_footer {
   font-size: 1.7rem;
   margin-left: 45%;
@@ -85,6 +102,34 @@ nav ul a {
   .back_footer {
     font-size: 1rem;
   }
+}
+
+.front-end footer {
+  background-color: #F01B69;
+}
+
+.front-end footer.page-footer .footer-copyright {
+  background-color: #F01B69;
+  margin-left: 2%;
+}
+
+a {
+  color: #F01B69;
+}
+
+.front-end  h2 {
+  color: #59013D;
+  color: #F01B69;
+  text-align: center;
+}
+
+.front-end  h4 {
+  color: #59013D;
+  color: #F01B69;
+}
+
+.front-end .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+  color: #F01B69;
 }
 
 @media only screen and (max-width: 600px) {
@@ -106,17 +151,6 @@ nav ul a {
   width: 90%;
 }
 
-.front-end  h2 {
-  color: #59013D;
-  color: #F01B69;
-  text-align: center;
-}
-
-.front-end  h4 {
-  color: #59013D;
-  color: #F01B69;
-}
-
 .front-end .tags {
   border-radius: 4px;
 }
@@ -124,19 +158,6 @@ nav ul a {
 .front-end .tags li {
   color: #333;
   font-size: 1.3rem;
-}
-
-.front-end footer {
-  background-color: #F01B69;
-}
-
-.front-end footer.page-footer .footer-copyright {
-  background-color: #F01B69;
-  margin-left: 2%;
-}
-
-.front-end .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
-  color: #F01B69;
 }
 
 .ind_post img {
@@ -203,16 +224,4 @@ border-bottom: 2px solid #F01B69;
 
 .secondary-content {
   color: #F01B69;
-}
-
-.front-end nav i.material-icons {
-  color: #000;
-}
-
-a {
-  color: #F01B69;
-}
-
-.login_nav {
-  margin-bottom: 25px;
 }
